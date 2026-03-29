@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vesica Studio — Sacred Geometry Drawing App</title>
-  <meta name="description" content="Vesica Studio is a professional sacred geometry drawing app for artists, tattoo designers, and pattern makers. Mandala Mode, 17 Wallpaper Groups, Kaleidoscope Mode." />
+  <meta name="description" content="Create mathematically perfect mandalas, infinite patterns, and sacred geometry — free in your browser. No download, no account required." />
   <meta property="og:title" content="Vesica Studio — Sacred Geometry Drawing App" />
   <meta property="og:description" content="Sacred geometry, drawn by hand." />
   <meta property="og:type" content="website" />
@@ -171,8 +171,18 @@
       font-size: clamp(0.95rem, 2.5vw, 1.3rem);
       color: var(--muted);
       letter-spacing: 0.25em;
-      margin-bottom: 3rem;
+      margin-bottom: 1rem;
       font-style: italic;
+    }
+
+    .hero-subtext {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: clamp(0.9rem, 2vw, 1.05rem);
+      color: var(--muted);
+      max-width: 560px;
+      line-height: 1.7;
+      margin-bottom: 3rem;
     }
 
     .btn-primary {
@@ -375,6 +385,162 @@
       line-height: 1.75;
     }
 
+    /* ── PRICING ── */
+    #pricing {
+      background: linear-gradient(180deg, transparent 0%, rgba(124, 58, 237, 0.06) 50%, transparent 100%);
+    }
+
+    .pricing-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    .pricing-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      padding: 2.5rem 2rem;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s ease;
+    }
+
+    .pricing-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.6), transparent);
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(124, 58, 237, 0.2);
+    }
+
+    .pricing-card.popular {
+      border-color: rgba(168, 85, 247, 0.5);
+      box-shadow: 0 0 40px rgba(124, 58, 237, 0.25), 0 0 80px rgba(124, 58, 237, 0.1);
+    }
+
+    .pricing-card.popular:hover {
+      box-shadow: 0 0 60px rgba(124, 58, 237, 0.4), 0 0 100px rgba(124, 58, 237, 0.15);
+    }
+
+    .pricing-badge {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #fff;
+      background: linear-gradient(135deg, var(--violet) 0%, var(--violet-light) 100%);
+      padding: 0.3rem 0.9rem;
+      border-radius: 100px;
+      margin-bottom: 1.25rem;
+      box-shadow: 0 0 16px rgba(124, 58, 237, 0.5);
+    }
+
+    .pricing-tier {
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 1.5rem;
+      letter-spacing: 0.08em;
+      color: var(--white);
+      margin-bottom: 0.25rem;
+    }
+
+    .pricing-price {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      color: var(--violet-pale);
+      font-weight: 500;
+      margin-bottom: 1.75rem;
+    }
+
+    .pricing-features {
+      list-style: none;
+      margin-bottom: 2rem;
+    }
+
+    .pricing-features li {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.6;
+      padding: 0.4rem 0;
+      padding-left: 1.4rem;
+      position: relative;
+    }
+
+    .pricing-features li::before {
+      content: '◆';
+      position: absolute;
+      left: 0;
+      color: var(--violet-light);
+      font-size: 0.5rem;
+      top: 0.6rem;
+    }
+
+    .btn-pricing {
+      display: block;
+      width: 100%;
+      text-align: center;
+      font-family: 'Cinzel', serif;
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      color: var(--violet-pale);
+      text-decoration: none;
+      padding: 0.85rem 1.5rem;
+      border-radius: 100px;
+      border: 1px solid rgba(168, 85, 247, 0.35);
+      background: rgba(124, 58, 237, 0.08);
+      transition: all 0.3s ease;
+    }
+
+    .btn-pricing:hover {
+      background: rgba(124, 58, 237, 0.2);
+      border-color: var(--violet-light);
+      color: #fff;
+      box-shadow: 0 0 24px rgba(124, 58, 237, 0.3);
+    }
+
+    .btn-pricing.primary {
+      background: linear-gradient(135deg, var(--violet) 0%, var(--violet-light) 100%);
+      border-color: transparent;
+      color: #fff;
+      box-shadow: 0 0 30px rgba(124, 58, 237, 0.4);
+    }
+
+    .btn-pricing.primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 50px rgba(124, 58, 237, 0.6);
+    }
+
+    .pricing-note {
+      text-align: center;
+      margin-top: 2.5rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    .pricing-note strong {
+      color: var(--violet-pale);
+      font-style: normal;
+    }
+
     /* ── PLATFORMS ── */
     #platforms {
       text-align: center;
@@ -559,6 +725,7 @@
 
     @media (max-width: 480px) {
       .features-grid { grid-template-columns: 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; }
       .btn-primary { padding: 0.9rem 2rem; font-size: 0.85rem; }
     }
   </style>
@@ -649,7 +816,7 @@
       </svg>
       <span class="nav-logo-text">VESICA STUDIO</span>
     </a>
-    <a href="https://mandalaapp-ay8xl9uc.manus.space" class="nav-cta" target="_blank" rel="noopener">Launch App</a>
+    <a href="https://mandalaapp-ay8xl9uc.manus.space" class="nav-cta" target="_blank" rel="noopener">Start Drawing Free</a>
   </nav>
 
   <!-- ═══════════════════════════
@@ -659,8 +826,9 @@
     <div class="hero-logo-wrap"><img src="img/icon.png" alt="Vesica Studio" style="width:140px;height:140px;border-radius:20px;box-shadow:0 0 40px rgba(168,85,247,0.6);"></div>
 
     <h1 class="hero-title">VESICA STUDIO</h1>
-    <p class="hero-tagline">Sacred geometry, drawn by hand.</p>
-    <a href="https://mandalaapp-ay8xl9uc.manus.space" class="btn-primary" target="_blank" rel="noopener">Launch App</a>
+    <p class="hero-tagline">No download. No account. No subscription. Just draw.</p>
+    <p class="hero-subtext">Sacred geometry for tattoo artists, pattern designers, and anyone who draws with mathematical precision.</p>
+    <a href="https://mandalaapp-ay8xl9uc.manus.space" class="btn-primary" target="_blank" rel="noopener">Start Drawing Free</a>
 
     <div class="hero-scroll-hint" aria-hidden="true">
       <div class="scroll-arrow"></div>
@@ -675,7 +843,7 @@
     <div class="section-inner">
       <div class="features-header reveal">
         <p class="section-label">Core Tools</p>
-        <h2 class="section-title">Three Modes of Creation</h2>
+        <h2 class="section-title">Four Modes of Creation</h2>
       </div>
       <div class="features-grid">
 
@@ -693,7 +861,7 @@
             </svg>
           </div>
           <h3 class="feature-name">Mandala Mode</h3>
-          <p class="feature-desc">2 to 128 rotational segments with bilateral mirror symmetry. Every stroke is instantly reflected in real-time across all axes — pure meditative flow.</p>
+          <p class="feature-desc">2 to 128 segments, bilateral mirror, movable center point. Every stroke replicated in real time.</p>
         </div>
 
         <div class="feature-card reveal reveal-delay-2">
@@ -708,7 +876,7 @@
             </svg>
           </div>
           <h3 class="feature-name">17 Wallpaper Groups</h3>
-          <p class="feature-desc">Every mathematically possible 2D symmetry pattern — the complete set. Infinite tessellations like M.C. Escher, grounded in group theory.</p>
+          <p class="feature-desc">The complete mathematical classification of 2D symmetry. The same framework used by M.C. Escher and Islamic geometric art.</p>
         </div>
 
         <div class="feature-card reveal reveal-delay-3">
@@ -723,10 +891,82 @@
             </svg>
           </div>
           <h3 class="feature-name">Kaleidoscope Mode</h3>
-          <p class="feature-desc">Patterns within patterns. A local rosette symmetry is tiled across a wallpaper group — recursive, fractal-like complexity from a single stroke.</p>
+          <p class="feature-desc">Rosette symmetry tiled across the plane. Patterns within patterns, infinitely complex.</p>
+        </div>
+
+        <div class="feature-card reveal reveal-delay-3">
+          <div class="feature-icon">
+            <!-- Layers icon -->
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="4" y="6" width="20" height="5" rx="2" stroke="#a855f7" stroke-width="1.2"/>
+              <rect x="4" y="13" width="20" height="5" rx="2" stroke="#a855f7" stroke-width="1.2" opacity="0.7"/>
+              <rect x="4" y="20" width="20" height="5" rx="2" stroke="#a855f7" stroke-width="1.2" opacity="0.4"/>
+            </svg>
+          </div>
+          <h3 class="feature-name">Professional Layer System</h3>
+          <p class="feature-desc">Unlimited layers with 16 blend modes. Each layer can have its own independent symmetry settings.</p>
         </div>
 
       </div>
+    </div>
+  </section>
+
+  <div class="divider" role="separator"></div>
+
+  <!-- ═══════════════════════════
+       PRICING
+  ═══════════════════════════ -->
+  <section id="pricing">
+    <div class="section-inner">
+      <div class="pricing-header reveal">
+        <p class="section-label">Pricing</p>
+        <h2 class="section-title">Simple, Honest Pricing</h2>
+      </div>
+      <div class="pricing-grid">
+
+        <!-- FREE -->
+        <div class="pricing-card reveal reveal-delay-1">
+          <p class="pricing-tier">Free</p>
+          <p class="pricing-price">$0 — always</p>
+          <ul class="pricing-features">
+            <li>Full app in your browser</li>
+            <li>All 3 symmetry modes</li>
+            <li>PNG export</li>
+            <li>No account needed</li>
+          </ul>
+          <a href="https://mandalaapp-ay8xl9uc.manus.space" class="btn-pricing" target="_blank" rel="noopener">Start Free</a>
+        </div>
+
+        <!-- PRO -->
+        <div class="pricing-card popular reveal reveal-delay-2">
+          <span class="pricing-badge">Most Popular</span>
+          <p class="pricing-tier">Pro</p>
+          <p class="pricing-price">$4.99 / month</p>
+          <ul class="pricing-features">
+            <li>Unlimited layers</li>
+            <li>All 16 blend modes</li>
+            <li>Post-processing transforms (hyperbolic / kaleidoscope)</li>
+            <li>Gallery with tagging</li>
+          </ul>
+          <a href="https://mandalaapp-ay8xl9uc.manus.space" class="btn-pricing primary" target="_blank" rel="noopener">Get Pro</a>
+        </div>
+
+        <!-- LIFETIME -->
+        <div class="pricing-card reveal reveal-delay-3">
+          <p class="pricing-tier">Lifetime</p>
+          <p class="pricing-price">$79.99 — one time</p>
+          <ul class="pricing-features">
+            <li>All Pro features, forever</li>
+            <li>No recurring charges</li>
+            <li>All future updates included</li>
+          </ul>
+          <a href="https://mandalaapp-ay8xl9uc.manus.space" class="btn-pricing" target="_blank" rel="noopener">Get Lifetime</a>
+        </div>
+
+      </div>
+      <p class="pricing-note reveal">
+        <strong>Undercuts Geometrica at $9.99/mo — with more features.</strong>
+      </p>
     </div>
   </section>
 
@@ -841,14 +1081,14 @@
     <div class="reveal">
       <h2 class="footer-title">Begin Drawing</h2>
       <p class="footer-sub">No account. No install. Pure geometry.</p>
-      <a href="https://mandalaapp-ay8xl9uc.manus.space" class="btn-primary" target="_blank" rel="noopener">Start Drawing</a>
+      <a href="https://mandalaapp-ay8xl9uc.manus.space" class="btn-primary" target="_blank" rel="noopener">Start Drawing Free</a>
     </div>
     <div class="footer-links">
       <a href="https://instagram.com/weschetattoo" class="footer-instagram" target="_blank" rel="noopener" aria-label="Instagram @weschetattoo">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
         @weschetattoo
       </a>
-      <p class="footer-copy">© 2025 Vesica Studio by Wesche Tattoo</p>
+      <p class="footer-copy">© 2026 Vesica Studio by Wesche Tattoo</p>
     </div>
   </footer>
 
