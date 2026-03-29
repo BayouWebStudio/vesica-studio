@@ -656,44 +656,7 @@
        HERO
   ═══════════════════════════ -->
   <section id="hero">
-    <div class="hero-logo-wrap">
-      <!-- Large Vesica Piscis Logo -->
-      <svg width="110" height="110" viewBox="0 0 110 110" xmlns="http://www.w3.org/2000/svg" aria-label="Vesica Piscis">
-        <defs>
-          <radialGradient id="vp-grad" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stop-color="#e9d5ff"/>
-            <stop offset="40%" stop-color="#a855f7"/>
-            <stop offset="100%" stop-color="#5b21b6"/>
-          </radialGradient>
-          <radialGradient id="vp-glow-bg" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stop-color="#7c3aed" stop-opacity="0.35"/>
-            <stop offset="100%" stop-color="#7c3aed" stop-opacity="0"/>
-          </radialGradient>
-          <filter id="vp-blur">
-            <feGaussianBlur stdDeviation="6" result="blur"/>
-            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-          </filter>
-        </defs>
-        <!-- Outer glow -->
-        <ellipse cx="55" cy="55" rx="48" ry="48" fill="url(#vp-glow-bg)"/>
-        <!-- Two circles forming vesica piscis -->
-        <circle cx="43" cy="55" r="28" fill="none" stroke="url(#vp-grad)" stroke-width="1.5" opacity="0.8"/>
-        <circle cx="67" cy="55" r="28" fill="none" stroke="url(#vp-grad)" stroke-width="1.5" opacity="0.8"/>
-        <!-- Vesica piscis lens (intersection) — filled -->
-        <path d="
-          M55,30.3
-          C63.5,37.5 63.5,72.5 55,79.7
-          C46.5,72.5 46.5,37.5 55,30.3 Z
-        " fill="url(#vp-grad)" opacity="0.75" filter="url(#vp-blur)"/>
-        <path d="
-          M55,30.3
-          C63.5,37.5 63.5,72.5 55,79.7
-          C46.5,72.5 46.5,37.5 55,30.3 Z
-        " fill="url(#vp-grad)" opacity="0.5"/>
-        <!-- Center dot -->
-        <circle cx="55" cy="55" r="2.5" fill="#e9d5ff"/>
-      </svg>
-    </div>
+    <div class="hero-logo-wrap"><img src="img/icon.png" alt="Vesica Studio" style="width:140px;height:140px;border-radius:20px;box-shadow:0 0 40px rgba(168,85,247,0.6);"></div>
 
     <h1 class="hero-title">VESICA STUDIO</h1>
     <p class="hero-tagline">Sacred geometry, drawn by hand.</p>
