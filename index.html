@@ -1,1117 +1,146 @@
-<!-- vesica-studio -->
 <!DOCTYPE html>
+<!-- vesica-studio -->
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vesica Studio — Sacred Geometry Drawing App</title>
-  <meta name="description" content="Create mathematically perfect mandalas, infinite patterns, and sacred geometry — free in your browser. Symmetry without limits." />
-  <meta property="og:title" content="Vesica Studio — Sacred Geometry Drawing App" />
-  <meta property="og:description" content="Sacred geometry, drawn by hand." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://vesica.studio" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    :root {
-      --bg: #0a0a1a;
-      --bg2: #0d0d22;
-      --violet: #7c3aed;
-      --violet-light: #a855f7;
-      --violet-pale: #c084fc;
-      --indigo: #4338ca;
-      --white: #f0f0ff;
-      --muted: #8888aa;
-      --card-bg: rgba(124, 58, 237, 0.05);
-      --card-border: rgba(168, 85, 247, 0.15);
-      --glow: rgba(124, 58, 237, 0.4);
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      background: var(--bg);
-      color: var(--white);
-      font-family: 'Inter', sans-serif;
-      font-weight: 400;
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    /* ── NOISE OVERLAY ── */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.5;
-    }
-
-    /* ── ANIMATED BACKGROUND MANDALA ── */
-    .bg-mandala {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      width: min(140vw, 140vh);
-      height: min(140vw, 140vh);
-      transform: translate(-50%, -50%);
-      opacity: 0.03;
-      animation: spin-slow 120s linear infinite;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    @keyframes spin-slow {
-      from { transform: translate(-50%, -50%) rotate(0deg); }
-      to   { transform: translate(-50%, -50%) rotate(360deg); }
-    }
-
-    /* ── NAV ── */
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1.25rem 2.5rem;
-      background: rgba(10, 10, 26, 0.7);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(168, 85, 247, 0.08);
-    }
-
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      text-decoration: none;
-    }
-
-    .nav-logo-text {
-      font-family: 'Cinzel', serif;
-      font-weight: 700;
-      font-size: 1rem;
-      letter-spacing: 0.15em;
-      color: var(--white);
-    }
-
-    .nav-cta {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: var(--violet-pale);
-      text-decoration: none;
-      letter-spacing: 0.05em;
-      border: 1px solid rgba(168, 85, 247, 0.3);
-      padding: 0.5rem 1.25rem;
-      border-radius: 100px;
-      transition: all 0.3s ease;
-    }
-
-    .nav-cta:hover {
-      background: rgba(124, 58, 237, 0.15);
-      border-color: var(--violet-light);
-      box-shadow: 0 0 20px rgba(124, 58, 237, 0.3);
-    }
-
-    /* ── HERO ── */
-    #hero {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 8rem 2rem 6rem;
-      z-index: 1;
-    }
-
-    .hero-logo-wrap {
-      margin-bottom: 2rem;
-      animation: float 6s ease-in-out infinite;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-12px); }
-    }
-
-    .hero-title {
-      font-family: 'Cinzel', serif;
-      font-weight: 900;
-      font-size: clamp(2.8rem, 8vw, 6rem);
-      letter-spacing: 0.2em;
-      line-height: 1;
-      background: linear-gradient(135deg, #fff 0%, var(--violet-pale) 50%, var(--violet-light) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 1.25rem;
-      text-shadow: none;
-    }
-
-    .hero-tagline {
-      font-family: 'Cinzel', serif;
-      font-weight: 400;
-      font-size: clamp(0.95rem, 2.5vw, 1.3rem);
-      color: var(--muted);
-      letter-spacing: 0.25em;
-      margin-bottom: 1rem;
-      font-style: italic;
-    }
-
-    .hero-subtext {
-      font-family: 'Inter', sans-serif;
-      font-weight: 400;
-      font-size: clamp(0.9rem, 2vw, 1.05rem);
-      color: var(--muted);
-      max-width: 560px;
-      line-height: 1.7;
-      margin-bottom: 3rem;
-    }
-
-    .btn-primary {
-      display: inline-block;
-      font-family: 'Cinzel', serif;
-      font-weight: 600;
-      font-size: 0.95rem;
-      letter-spacing: 0.2em;
-      color: #fff;
-      text-decoration: none;
-      padding: 1rem 3rem;
-      border-radius: 100px;
-      background: linear-gradient(135deg, var(--violet) 0%, var(--violet-light) 100%);
-      box-shadow: 0 0 40px rgba(124, 58, 237, 0.5), 0 0 80px rgba(124, 58, 237, 0.2);
-      position: relative;
-      transition: all 0.3s ease;
-      border: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .btn-primary::before {
-      content: '';
-      position: absolute;
-      inset: -2px;
-      border-radius: 100px;
-      background: linear-gradient(135deg, var(--violet-light), var(--violet));
-      z-index: -1;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      filter: blur(10px);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-2px) scale(1.03);
-      box-shadow: 0 0 60px rgba(124, 58, 237, 0.7), 0 0 100px rgba(124, 58, 237, 0.3);
-    }
-
-    .btn-primary:hover::before {
-      opacity: 1;
-    }
-
-    .hero-scroll-hint {
-      position: absolute;
-      bottom: 2.5rem;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-      color: var(--muted);
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      animation: fade-pulse 3s ease-in-out infinite;
-    }
-
-    @keyframes fade-pulse {
-      0%, 100% { opacity: 0.4; }
-      50% { opacity: 0.8; }
-    }
-
-    .scroll-arrow {
-      width: 1px;
-      height: 40px;
-      background: linear-gradient(to bottom, transparent, var(--violet-light));
-      animation: scroll-down 2s ease-in-out infinite;
-    }
-
-    @keyframes scroll-down {
-      0% { transform: scaleY(0); transform-origin: top; }
-      50% { transform: scaleY(1); transform-origin: top; }
-      51% { transform: scaleY(1); transform-origin: bottom; }
-      100% { transform: scaleY(0); transform-origin: bottom; }
-    }
-
-    /* ── SECTION SHARED ── */
-    section {
-      position: relative;
-      z-index: 1;
-    }
-
-    .section-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 6rem 2rem;
-    }
-
-    .section-label {
-      font-family: 'Cinzel', serif;
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.35em;
-      color: var(--violet-light);
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-    }
-
-    .section-title {
-      font-family: 'Cinzel', serif;
-      font-weight: 700;
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
-      letter-spacing: 0.08em;
-      line-height: 1.2;
-      margin-bottom: 1.5rem;
-      color: var(--white);
-    }
-
-    .section-desc {
-      font-size: 1.05rem;
-      color: var(--muted);
-      max-width: 560px;
-      line-height: 1.8;
-    }
-
-    /* ── DIVIDER ── */
-    .divider {
-      width: 80px;
-      height: 1px;
-      background: linear-gradient(to right, transparent, var(--violet-light), transparent);
-      margin: 4rem auto;
-    }
-
-    /* ── FEATURES ── */
-    #features {
-      background: linear-gradient(180deg, transparent 0%, rgba(124, 58, 237, 0.04) 50%, transparent 100%);
-    }
-
-    .features-header {
-      text-align: center;
-      margin-bottom: 4rem;
-    }
-
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .feature-card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 20px;
-      padding: 2.5rem 2rem;
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      position: relative;
-      overflow: hidden;
-      transition: all 0.4s ease;
-    }
-
-    .feature-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.6), transparent);
-    }
-
-    .feature-card::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: 20px;
-      background: radial-gradient(ellipse at top left, rgba(124, 58, 237, 0.1) 0%, transparent 60%);
-      pointer-events: none;
-    }
-
-    .feature-card:hover {
-      transform: translateY(-6px);
-      border-color: rgba(168, 85, 247, 0.4);
-      box-shadow: 0 20px 60px rgba(124, 58, 237, 0.2), 0 0 0 1px rgba(168, 85, 247, 0.1);
-    }
-
-    .feature-icon {
-      width: 56px;
-      height: 56px;
-      margin-bottom: 1.5rem;
-      background: rgba(124, 58, 237, 0.15);
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid rgba(168, 85, 247, 0.2);
-    }
-
-    .feature-name {
-      font-family: 'Cinzel', serif;
-      font-weight: 700;
-      font-size: 1.15rem;
-      letter-spacing: 0.05em;
-      color: var(--white);
-      margin-bottom: 0.75rem;
-    }
-
-    .feature-desc {
-      font-size: 0.95rem;
-      color: var(--muted);
-      line-height: 1.75;
-    }
-
-    /* ── PRICING ── */
-    #pricing {
-      background: linear-gradient(180deg, transparent 0%, rgba(124, 58, 237, 0.06) 50%, transparent 100%);
-    }
-
-    .pricing-header {
-      text-align: center;
-      margin-bottom: 4rem;
-    }
-
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-      align-items: start;
-    }
-
-    .pricing-card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 24px;
-      padding: 2.5rem 2rem;
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      position: relative;
-      overflow: hidden;
-      transition: all 0.4s ease;
-    }
-
-    .pricing-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.6), transparent);
-    }
-
-    .pricing-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 60px rgba(124, 58, 237, 0.2);
-    }
-
-    .pricing-card.popular {
-      border-color: rgba(168, 85, 247, 0.5);
-      box-shadow: 0 0 40px rgba(124, 58, 237, 0.25), 0 0 80px rgba(124, 58, 237, 0.1);
-    }
-
-    .pricing-card.popular:hover {
-      box-shadow: 0 0 60px rgba(124, 58, 237, 0.4), 0 0 100px rgba(124, 58, 237, 0.15);
-    }
-
-    .pricing-badge {
-      display: inline-block;
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: #fff;
-      background: linear-gradient(135deg, var(--violet) 0%, var(--violet-light) 100%);
-      padding: 0.3rem 0.9rem;
-      border-radius: 100px;
-      margin-bottom: 1.25rem;
-      box-shadow: 0 0 16px rgba(124, 58, 237, 0.5);
-    }
-
-    .pricing-tier {
-      font-family: 'Cinzel', serif;
-      font-weight: 700;
-      font-size: 1.5rem;
-      letter-spacing: 0.08em;
-      color: var(--white);
-      margin-bottom: 0.25rem;
-    }
-
-    .pricing-price {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.95rem;
-      color: var(--violet-pale);
-      font-weight: 500;
-      margin-bottom: 1.75rem;
-    }
-
-    .pricing-features {
-      list-style: none;
-      margin-bottom: 2rem;
-    }
-
-    .pricing-features li {
-      font-size: 0.9rem;
-      color: var(--muted);
-      line-height: 1.6;
-      padding: 0.4rem 0;
-      padding-left: 1.4rem;
-      position: relative;
-    }
-
-    .pricing-features li::before {
-      content: '◆';
-      position: absolute;
-      left: 0;
-      color: var(--violet-light);
-      font-size: 0.5rem;
-      top: 0.6rem;
-    }
-
-    .btn-pricing {
-      display: block;
-      width: 100%;
-      text-align: center;
-      font-family: 'Cinzel', serif;
-      font-weight: 600;
-      font-size: 0.85rem;
-      letter-spacing: 0.15em;
-      color: var(--violet-pale);
-      text-decoration: none;
-      padding: 0.85rem 1.5rem;
-      border-radius: 100px;
-      border: 1px solid rgba(168, 85, 247, 0.35);
-      background: rgba(124, 58, 237, 0.08);
-      transition: all 0.3s ease;
-    }
-
-    .btn-pricing:hover {
-      background: rgba(124, 58, 237, 0.2);
-      border-color: var(--violet-light);
-      color: #fff;
-      box-shadow: 0 0 24px rgba(124, 58, 237, 0.3);
-    }
-
-    .btn-pricing.primary {
-      background: linear-gradient(135deg, var(--violet) 0%, var(--violet-light) 100%);
-      border-color: transparent;
-      color: #fff;
-      box-shadow: 0 0 30px rgba(124, 58, 237, 0.4);
-    }
-
-    .btn-pricing.primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 0 50px rgba(124, 58, 237, 0.6);
-    }
-
-    .pricing-note {
-      text-align: center;
-      margin-top: 2.5rem;
-      font-size: 0.85rem;
-      color: var(--muted);
-      font-style: italic;
-    }
-
-    .pricing-note strong {
-      color: var(--violet-pale);
-      font-style: normal;
-    }
-
-    /* ── PLATFORMS ── */
-    #platforms {
-      text-align: center;
-    }
-
-    .platforms-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      justify-content: center;
-      margin-top: 3rem;
-    }
-
-    .platform-pill {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      padding: 0.75rem 1.5rem;
-      border-radius: 100px;
-      border: 1px solid var(--card-border);
-      background: var(--card-bg);
-      backdrop-filter: blur(10px);
-      font-size: 0.9rem;
-      font-weight: 500;
-      color: var(--white);
-      transition: all 0.3s ease;
-    }
-
-    .platform-pill:hover {
-      border-color: rgba(168, 85, 247, 0.4);
-      background: rgba(124, 58, 237, 0.1);
-    }
-
-    .platform-pill.soon {
-      opacity: 0.55;
-    }
-
-    .platform-pill.soon::after {
-      content: 'SOON';
-      font-size: 0.6rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      color: var(--violet-light);
-      background: rgba(168, 85, 247, 0.15);
-      padding: 0.15rem 0.5rem;
-      border-radius: 4px;
-    }
-
-    /* ── ABOUT ── */
-    #about {
-      background: linear-gradient(180deg, transparent 0%, rgba(124, 58, 237, 0.04) 50%, transparent 100%);
-    }
-
-    .about-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-      align-items: center;
-    }
-
-    .about-symbol {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .about-symbol svg {
-      width: min(300px, 80vw);
-      height: min(300px, 80vw);
-      filter: drop-shadow(0 0 30px rgba(124, 58, 237, 0.4));
-      animation: spin-slow-rev 80s linear infinite;
-    }
-
-    @keyframes spin-slow-rev {
-      from { transform: rotate(0deg); }
-      to   { transform: rotate(-360deg); }
-    }
-
-    .about-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 2rem;
-    }
-
-    .tag {
-      font-size: 0.8rem;
-      font-weight: 500;
-      letter-spacing: 0.05em;
-      color: var(--violet-pale);
-      background: rgba(124, 58, 237, 0.12);
-      border: 1px solid rgba(168, 85, 247, 0.2);
-      padding: 0.35rem 0.9rem;
-      border-radius: 100px;
-    }
-
-    /* ── FOOTER CTA ── */
-    #cta-footer {
-      text-align: center;
-      padding: 8rem 2rem;
-      background: radial-gradient(ellipse at center, rgba(124, 58, 237, 0.12) 0%, transparent 70%);
-      border-top: 1px solid rgba(168, 85, 247, 0.08);
-    }
-
-    .footer-title {
-      font-family: 'Cinzel', serif;
-      font-weight: 900;
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      letter-spacing: 0.12em;
-      background: linear-gradient(135deg, #fff 0%, var(--violet-pale) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 1rem;
-    }
-
-    .footer-sub {
-      font-size: 1rem;
-      color: var(--muted);
-      margin-bottom: 3rem;
-    }
-
-    .footer-links {
-      margin-top: 4rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .footer-copy {
-      font-size: 0.8rem;
-      color: #44445a;
-      letter-spacing: 0.05em;
-    }
-
-    .footer-instagram {
-      font-size: 0.85rem;
-      color: var(--violet-pale);
-      text-decoration: none;
-      letter-spacing: 0.05em;
-      transition: color 0.2s;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
-
-    .footer-instagram:hover {
-      color: #fff;
-    }
-
-    /* ── SCROLL REVEAL ── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .reveal-delay-1 { transition-delay: 0.1s; }
-    .reveal-delay-2 { transition-delay: 0.2s; }
-    .reveal-delay-3 { transition-delay: 0.3s; }
-
-    /* ── MOBILE ── */
-    @media (max-width: 768px) {
-      nav { padding: 1rem 1.25rem; }
-      .nav-logo-text { font-size: 0.85rem; }
-
-      .about-inner {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-      }
-
-      .about-symbol { order: -1; }
-
-      .section-inner { padding: 4rem 1.25rem; }
-    }
-
-    @media (max-width: 480px) {
-      .features-grid { grid-template-columns: 1fr; }
-      .pricing-grid { grid-template-columns: 1fr; }
-      .btn-primary { padding: 0.9rem 2rem; font-size: 0.85rem; }
-    }
-  </style>
+  <meta name="description" content="Professional sacred geometry drawing for tattoo artists, pattern designers, and geometric artists. Free to start. No download required.">
+  <link rel="icon" type="image/png" href="img/icon.png">
+  <link rel="canonical" href="https://vesica.studio/">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-  <!-- ═══════════════════════════════════════
-       ANIMATED BACKGROUND — FLOWER OF LIFE
-  ═══════════════════════════════════════ -->
-  <svg class="bg-mandala" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <defs>
-      <style>
-        .fol { fill: none; stroke: #a855f7; stroke-width: 0.5; }
-      </style>
-    </defs>
-    <!-- Central circle -->
-    <circle class="fol" cx="400" cy="400" r="80"/>
-    <!-- Ring 1 — 6 circles -->
-    <circle class="fol" cx="400" cy="320" r="80"/>
-    <circle class="fol" cx="469" cy="360" r="80"/>
-    <circle class="fol" cx="469" cy="440" r="80"/>
-    <circle class="fol" cx="400" cy="480" r="80"/>
-    <circle class="fol" cx="331" cy="440" r="80"/>
-    <circle class="fol" cx="331" cy="360" r="80"/>
-    <!-- Ring 2 — 6 circles (farther out) -->
-    <circle class="fol" cx="400" cy="240" r="80"/>
-    <circle class="fol" cx="469" cy="280" r="80"/>
-    <circle class="fol" cx="538" cy="320" r="80"/>
-    <circle class="fol" cx="538" cy="400" r="80"/>
-    <circle class="fol" cx="538" cy="480" r="80"/>
-    <circle class="fol" cx="469" cy="520" r="80"/>
-    <circle class="fol" cx="400" cy="560" r="80"/>
-    <circle class="fol" cx="331" cy="520" r="80"/>
-    <circle class="fol" cx="262" cy="480" r="80"/>
-    <circle class="fol" cx="262" cy="400" r="80"/>
-    <circle class="fol" cx="262" cy="320" r="80"/>
-    <circle class="fol" cx="331" cy="280" r="80"/>
-    <!-- Ring 3 — extended -->
-    <circle class="fol" cx="400" cy="160" r="80"/>
-    <circle class="fol" cx="469" cy="200" r="80"/>
-    <circle class="fol" cx="538" cy="240" r="80"/>
-    <circle class="fol" cx="607" cy="280" r="80"/>
-    <circle class="fol" cx="607" cy="360" r="80"/>
-    <circle class="fol" cx="607" cy="440" r="80"/>
-    <circle class="fol" cx="607" cy="520" r="80"/>
-    <circle class="fol" cx="538" cy="560" r="80"/>
-    <circle class="fol" cx="469" cy="600" r="80"/>
-    <circle class="fol" cx="400" cy="640" r="80"/>
-    <circle class="fol" cx="331" cy="600" r="80"/>
-    <circle class="fol" cx="262" cy="560" r="80"/>
-    <circle class="fol" cx="193" cy="520" r="80"/>
-    <circle class="fol" cx="193" cy="440" r="80"/>
-    <circle class="fol" cx="193" cy="360" r="80"/>
-    <circle class="fol" cx="193" cy="280" r="80"/>
-    <circle class="fol" cx="262" cy="240" r="80"/>
-    <circle class="fol" cx="331" cy="200" r="80"/>
-  </svg>
-
-  <!-- ═══════════════════════════
-       NAV
-  ═══════════════════════════ -->
-  <nav>
-    <a href="#hero" class="nav-logo">
-      <!-- Vesica Piscis Logo Mark — inline SVG -->
-      <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-label="Vesica Studio logo">
-        <defs>
-          <radialGradient id="vp-grad-nav" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stop-color="#c084fc"/>
-            <stop offset="100%" stop-color="#7c3aed"/>
-          </radialGradient>
-          <filter id="vp-glow-nav">
-            <feGaussianBlur stdDeviation="1.5" result="blur"/>
-            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-          </filter>
-          <clipPath id="vp-clip-nav">
-            <circle cx="13" cy="16" r="10"/>
-          </clipPath>
-          <clipPath id="vp-clip2-nav">
-            <circle cx="19" cy="16" r="10"/>
-          </clipPath>
-        </defs>
-        <g filter="url(#vp-glow-nav)">
-          <circle cx="13" cy="16" r="10" fill="none" stroke="url(#vp-grad-nav)" stroke-width="1.2" opacity="0.7"/>
-          <circle cx="19" cy="16" r="10" fill="none" stroke="url(#vp-grad-nav)" stroke-width="1.2" opacity="0.7"/>
-          <!-- Vesica intersection fill -->
-          <path d="M16,7.3 C18.7,9.5 18.7,22.5 16,24.7 C13.3,22.5 13.3,9.5 16,7.3 Z" fill="url(#vp-grad-nav)" opacity="0.6"/>
-        </g>
-      </svg>
-      <span class="nav-logo-text">VESICA STUDIO</span>
-    </a>
-    <a href="https://app.vesica.studio" class="nav-cta" target="_blank" rel="noopener">Start Drawing Free</a>
+  <!-- ══ NAV ══ -->
+  <nav class="nav" role="navigation">
+    <div class="container nav-inner">
+      <a href="/" class="nav-logo" aria-label="Vesica Studio home">
+        <img src="img/icon.png" alt="Vesica Studio logo — Seed of Life">
+        <span class="nav-logo-text">VESICA STUDIO</span>
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="features.html">Features</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="https://app.vesica.studio" class="nav-cta" target="_blank" rel="noopener">Open App →</a></li>
+      </ul>
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </nav>
 
-  <!-- ═══════════════════════════
-       HERO
-  ═══════════════════════════ -->
-  <section id="hero">
-    <div class="hero-logo-wrap"><img src="img/icon.png" alt="Vesica Studio" style="width:140px;height:140px;border-radius:20px;box-shadow:0 0 40px rgba(168,85,247,0.6);"></div>
-
-    <h1 class="hero-title">VESICA STUDIO</h1>
-    <p class="hero-tagline">Symmetry without limits.</p>
-    <p class="hero-subtext">Sacred geometry for tattoo artists, pattern designers, and anyone who draws with mathematical precision.</p>
-    <a href="https://app.vesica.studio" class="btn-primary" target="_blank" rel="noopener">Start Drawing Free</a>
-
-    <div class="hero-scroll-hint" aria-hidden="true">
-      <div class="scroll-arrow"></div>
-      <span>Scroll</span>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════
-       FEATURES
-  ═══════════════════════════ -->
-  <section id="features">
-    <div class="section-inner">
-      <div class="features-header reveal">
-        <p class="section-label">Core Tools</p>
-        <h2 class="section-title">Four Modes of Creation</h2>
+  <!-- ══ HERO ══ -->
+  <section class="hero" aria-labelledby="hero-headline">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <h1 class="hero-headline cinzel" id="hero-headline">
+          SYMMETRY<br>WITHOUT<br>LIMITS.
+        </h1>
+        <p class="hero-body">
+          Professional sacred geometry drawing for tattoo artists, pattern designers, and geometric artists.
+        </p>
+        <a href="https://app.vesica.studio" class="btn-primary" target="_blank" rel="noopener">
+          Start Drawing Free →
+        </a>
       </div>
-      <div class="features-grid">
-
-        <div class="feature-card reveal reveal-delay-1">
-          <div class="feature-icon">
-            <!-- Mandala icon -->
-            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="14" cy="14" r="10" stroke="#a855f7" stroke-width="1.2"/>
-              <circle cx="14" cy="14" r="6" stroke="#a855f7" stroke-width="1.2"/>
-              <circle cx="14" cy="14" r="2" fill="#a855f7"/>
-              <line x1="14" y1="4" x2="14" y2="24" stroke="#a855f7" stroke-width="0.8" opacity="0.5"/>
-              <line x1="4" y1="14" x2="24" y2="14" stroke="#a855f7" stroke-width="0.8" opacity="0.5"/>
-              <line x1="7" y1="7" x2="21" y2="21" stroke="#a855f7" stroke-width="0.8" opacity="0.5"/>
-              <line x1="21" y1="7" x2="7" y2="21" stroke="#a855f7" stroke-width="0.8" opacity="0.5"/>
-            </svg>
-          </div>
-          <h3 class="feature-name">Mandala Mode</h3>
-          <p class="feature-desc">2 to 128 segments, bilateral mirror, movable center point. Every stroke replicated in real time.</p>
-        </div>
-
-        <div class="feature-card reveal reveal-delay-2">
-          <div class="feature-icon">
-            <!-- Wallpaper/grid icon -->
-            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="3" y="3" width="8" height="8" rx="1.5" stroke="#a855f7" stroke-width="1.2"/>
-              <rect x="17" y="3" width="8" height="8" rx="1.5" stroke="#a855f7" stroke-width="1.2"/>
-              <rect x="3" y="17" width="8" height="8" rx="1.5" stroke="#a855f7" stroke-width="1.2"/>
-              <rect x="17" y="17" width="8" height="8" rx="1.5" stroke="#a855f7" stroke-width="1.2"/>
-              <circle cx="14" cy="14" r="2" fill="#a855f7" opacity="0.7"/>
-            </svg>
-          </div>
-          <h3 class="feature-name">17 Wallpaper Groups</h3>
-          <p class="feature-desc">The complete mathematical classification of 2D symmetry. The same framework used by M.C. Escher and Islamic geometric art.</p>
-        </div>
-
-        <div class="feature-card reveal reveal-delay-3">
-          <div class="feature-icon">
-            <!-- Kaleidoscope icon -->
-            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <polygon points="14,3 25,21 3,21" stroke="#a855f7" stroke-width="1.2" fill="none"/>
-              <polygon points="14,10 20,21 8,21" stroke="#a855f7" stroke-width="1" fill="rgba(168,85,247,0.1)"/>
-              <line x1="14" y1="3" x2="14" y2="21" stroke="#a855f7" stroke-width="0.8" opacity="0.4"/>
-              <line x1="14" y1="10" x2="3" y2="21" stroke="#a855f7" stroke-width="0.8" opacity="0.4"/>
-              <line x1="14" y1="10" x2="25" y2="21" stroke="#a855f7" stroke-width="0.8" opacity="0.4"/>
-            </svg>
-          </div>
-          <h3 class="feature-name">Kaleidoscope Mode</h3>
-          <p class="feature-desc">Rosette symmetry tiled across the plane. Patterns within patterns, infinitely complex.</p>
-        </div>
-
-        <div class="feature-card reveal reveal-delay-3">
-          <div class="feature-icon">
-            <!-- Layers icon -->
-            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="4" y="6" width="20" height="5" rx="2" stroke="#a855f7" stroke-width="1.2"/>
-              <rect x="4" y="13" width="20" height="5" rx="2" stroke="#a855f7" stroke-width="1.2" opacity="0.7"/>
-              <rect x="4" y="20" width="20" height="5" rx="2" stroke="#a855f7" stroke-width="1.2" opacity="0.4"/>
-            </svg>
-          </div>
-          <h3 class="feature-name">Professional Layer System</h3>
-          <p class="feature-desc">Unlimited layers with 16 blend modes. Each layer can have its own independent symmetry settings.</p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <div class="divider" role="separator"></div>
-
-  <!-- ═══════════════════════════
-       PRICING
-  ═══════════════════════════ -->
-  <section id="pricing">
-    <div class="section-inner">
-      <div class="pricing-header reveal">
-        <p class="section-label">Pricing</p>
-        <h2 class="section-title">Simple, Honest Pricing</h2>
-      </div>
-      <div class="pricing-grid">
-
-        <!-- FREE -->
-        <div class="pricing-card reveal reveal-delay-1">
-          <p class="pricing-tier">Free</p>
-          <p class="pricing-price">$0 — always</p>
-          <ul class="pricing-features">
-            <li>Full app in your browser</li>
-            <li>All 3 symmetry modes</li>
-            <li>PNG export</li>
-            <li>No account needed</li>
-          </ul>
-          <a href="https://app.vesica.studio" class="btn-pricing" target="_blank" rel="noopener">Start Free</a>
-        </div>
-
-        <!-- PRO -->
-        <div class="pricing-card popular reveal reveal-delay-2">
-          <span class="pricing-badge">Most Popular</span>
-          <p class="pricing-tier">Pro</p>
-          <p class="pricing-price">$4.99 / month</p>
-          <ul class="pricing-features">
-            <li>Unlimited layers</li>
-            <li>All 16 blend modes</li>
-            <li>Post-processing transforms (hyperbolic / kaleidoscope)</li>
-            <li>Gallery with tagging</li>
-          </ul>
-          <a href="https://app.vesica.studio" class="btn-pricing primary" target="_blank" rel="noopener">Get Pro</a>
-        </div>
-
-        <!-- LIFETIME -->
-        <div class="pricing-card reveal reveal-delay-3">
-          <p class="pricing-tier">Lifetime</p>
-          <p class="pricing-price">$79.99 — one time</p>
-          <ul class="pricing-features">
-            <li>All Pro features, forever</li>
-            <li>No recurring charges</li>
-            <li>All future updates included</li>
-          </ul>
-          <a href="https://app.vesica.studio" class="btn-pricing" target="_blank" rel="noopener">Get Lifetime</a>
-        </div>
-
-      </div>
-      <p class="pricing-note reveal">
-        <strong>Undercuts Geometrica at $9.99/mo — with more features.</strong>
-      </p>
-    </div>
-  </section>
-
-  <div class="divider" role="separator"></div>
-
-  <!-- ═══════════════════════════
-       PLATFORMS
-  ═══════════════════════════ -->
-  <section id="platforms">
-    <div class="section-inner">
-      <div class="reveal">
-        <p class="section-label">Available On</p>
-        <h2 class="section-title">Draw Anywhere</h2>
-      </div>
-      <div class="platforms-grid">
-        <div class="platform-pill reveal reveal-delay-1">
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="9" cy="9" r="7" stroke="#a855f7" stroke-width="1.2"/><path d="M2,9 Q9,2 16,9 Q9,16 2,9 Z" stroke="#a855f7" stroke-width="1" fill="none"/><line x1="9" y1="2" x2="9" y2="16" stroke="#a855f7" stroke-width="1" opacity="0.5"/></svg>
-          Web App
-        </div>
-        <div class="platform-pill reveal reveal-delay-2">
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="2" width="12" height="14" rx="2" stroke="#a855f7" stroke-width="1.2"/><circle cx="9" cy="13" r="1" fill="#a855f7"/></svg>
-          Progressive Web App
-        </div>
-        <div class="platform-pill soon reveal reveal-delay-3">
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="4" width="14" height="10" rx="2" stroke="#a855f7" stroke-width="1.2"/><circle cx="9" cy="14" r="0.8" fill="#a855f7" opacity="0.5"/></svg>
-          iPad (Capacitor)
-        </div>
-        <div class="platform-pill soon reveal reveal-delay-3">
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4,14 L9,4 L14,14" stroke="#a855f7" stroke-width="1.2" fill="none"/><path d="M6,11 L12,11" stroke="#a855f7" stroke-width="1"/></svg>
-          Apple Pencil
+      <div class="hero-screenshot">
+        <div class="device-frame">
+          <img
+            src="img/splash-landscape.png"
+            alt="Vesica Studio app — sacred geometry drawing interface"
+            width="720"
+            height="450"
+            loading="eager"
+          >
         </div>
       </div>
     </div>
   </section>
 
-  <div class="divider" role="separator"></div>
+  <!-- ══ WHAT YOU CAN MAKE ══ -->
+  <section class="section" aria-labelledby="make-heading">
+    <div class="container">
+      <p class="section-label">What you can make</p>
+      <h2 class="section-heading" id="make-heading">Geometry that was impossible to draw by hand.</h2>
 
-  <!-- ═══════════════════════════
-       ABOUT / PHILOSOPHY
-  ═══════════════════════════ -->
-  <section id="about">
-    <div class="section-inner">
-      <div class="about-inner">
-        <div class="about-text reveal">
-          <p class="section-label">Philosophy</p>
-          <h2 class="section-title">The Shape Behind Everything</h2>
-          <p class="section-desc">
-            Named after the vesica piscis — the foundational shape formed by two overlapping circles — Vesica Studio is a professional tool for artists, tattoo designers, and pattern makers who work with mathematical symmetry. Built for both desktop and tablet.
-          </p>
-          <div class="about-tags">
-            <span class="tag">Tattoo Artists</span>
-            <span class="tag">Pattern Designers</span>
-            <span class="tag">Digital Illustrators</span>
-            <span class="tag">Geometry Enthusiasts</span>
-            <span class="tag">Mandala Artists</span>
-          </div>
+      <div class="make-grid">
+        <div class="make-item">
+          <p class="make-number">01</p>
+          <h3 class="make-title">Mandalas</h3>
+          <p class="make-desc">2 to 128 rotational segments. Mirror. Repeat. Perfect every time.</p>
         </div>
-        <div class="about-symbol reveal reveal-delay-2">
-          <!-- Flower of Life ornament -->
-          <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <defs>
-              <radialGradient id="fol-grad" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stop-color="#c084fc" stop-opacity="0.9"/>
-                <stop offset="100%" stop-color="#7c3aed" stop-opacity="0.3"/>
-              </radialGradient>
-            </defs>
-            <g fill="none" stroke="url(#fol-grad)" stroke-width="0.8">
-              <circle cx="150" cy="150" r="40"/>
-              <circle cx="150" cy="110" r="40"/>
-              <circle cx="185" cy="130" r="40"/>
-              <circle cx="185" cy="170" r="40"/>
-              <circle cx="150" cy="190" r="40"/>
-              <circle cx="115" cy="170" r="40"/>
-              <circle cx="115" cy="130" r="40"/>
-              <!-- outer ring -->
-              <circle cx="150" cy="70"  r="40"/>
-              <circle cx="185" cy="90"  r="40"/>
-              <circle cx="220" cy="110" r="40"/>
-              <circle cx="220" cy="150" r="40"/>
-              <circle cx="220" cy="190" r="40"/>
-              <circle cx="185" cy="210" r="40"/>
-              <circle cx="150" cy="230" r="40"/>
-              <circle cx="115" cy="210" r="40"/>
-              <circle cx="80"  cy="190" r="40"/>
-              <circle cx="80"  cy="150" r="40"/>
-              <circle cx="80"  cy="110" r="40"/>
-              <circle cx="115" cy="90"  r="40"/>
-              <!-- 3rd ring partial -->
-              <circle cx="150" cy="30"  r="40" opacity="0.4"/>
-              <circle cx="220" cy="70"  r="40" opacity="0.4"/>
-              <circle cx="255" cy="130" r="40" opacity="0.4"/>
-              <circle cx="255" cy="190" r="40" opacity="0.4"/>
-              <circle cx="220" cy="230" r="40" opacity="0.4"/>
-              <circle cx="150" cy="270" r="40" opacity="0.4"/>
-              <circle cx="80"  cy="230" r="40" opacity="0.4"/>
-              <circle cx="45"  cy="190" r="40" opacity="0.4"/>
-              <circle cx="45"  cy="130" r="40" opacity="0.4"/>
-              <circle cx="80"  cy="70"  r="40" opacity="0.4"/>
-            </g>
-            <!-- Central glow -->
-            <circle cx="150" cy="150" r="40" fill="rgba(124,58,237,0.08)" stroke="none"/>
-          </svg>
+        <div class="make-item">
+          <p class="make-number">02</p>
+          <h3 class="make-title">Wallpaper Patterns</h3>
+          <p class="make-desc">All 17 crystallographic groups. The math that Escher used.</p>
+        </div>
+        <div class="make-item">
+          <p class="make-number">03</p>
+          <h3 class="make-title">Kaleidoscopes</h3>
+          <p class="make-desc">Rosette symmetry tiled infinitely across the plane.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ═══════════════════════════
-       CTA FOOTER
-  ═══════════════════════════ -->
-  <footer id="cta-footer">
-    <div class="reveal">
-      <h2 class="footer-title">Begin Drawing</h2>
-      <p class="footer-sub">No account. No install. Pure geometry.</p>
-      <a href="https://app.vesica.studio" class="btn-primary" target="_blank" rel="noopener">Start Drawing Free</a>
+  <!-- ══ PULL QUOTE ══ -->
+  <section class="pull-quote-section" aria-label="About Vesica Studio">
+    <div class="container">
+      <blockquote class="pull-quote">
+        "Built by a tattoo artist.<br>For artists who take geometry seriously."
+      </blockquote>
+      <p class="pull-quote-attribution">— Wesche Tattoo, Houston TX</p>
     </div>
-    <div class="footer-links">
-      <a href="https://instagram.com/weschetattoo" class="footer-instagram" target="_blank" rel="noopener" aria-label="Instagram @weschetattoo">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
-        @weschetattoo
+  </section>
+
+  <!-- ══ PLATFORMS ══ -->
+  <section class="platforms-section" aria-labelledby="platforms-heading">
+    <div class="container">
+      <p class="section-label">Works everywhere</p>
+      <h2 class="section-heading" id="platforms-heading" style="margin-bottom:36px;">Your studio. Any device.</h2>
+      <ul class="platforms-list" role="list">
+        <li>Web Browser</li>
+        <li>iPad (PWA)</li>
+        <li>Desktop</li>
+        <li>Apple Pencil Support</li>
+      </ul>
+      <p class="platforms-note">No download required. Works in any modern browser.</p>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ══ -->
+  <footer class="footer" role="contentinfo">
+    <div class="container footer-inner">
+      <a href="/" class="footer-logo" aria-label="Vesica Studio">
+        <img src="img/icon.png" alt="Vesica Studio — Seed of Life icon">
+        <span class="footer-logo-text">VESICA STUDIO</span>
       </a>
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="features.html">Features</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="https://app.vesica.studio" target="_blank" rel="noopener">Open App</a>
+        <a href="https://instagram.com/weschetattoo" target="_blank" rel="noopener">@weschetattoo</a>
+      </nav>
       <p class="footer-copy">© 2026 Vesica Studio by Wesche Tattoo</p>
     </div>
   </footer>
 
-  <!-- ═══════════════════════════
-       SCROLL REVEAL SCRIPT
-  ═══════════════════════════ -->
   <script>
-    (function() {
-      var els = document.querySelectorAll('.reveal');
-      if (!('IntersectionObserver' in window)) {
-        els.forEach(function(el) { el.classList.add('visible'); });
-        return;
-      }
-      var io = new IntersectionObserver(function(entries) {
-        entries.forEach(function(e) {
-          if (e.isIntersecting) {
-            e.target.classList.add('visible');
-            io.unobserve(e.target);
-          }
-        });
-      }, { threshold: 0.15 });
-      els.forEach(function(el) { io.observe(el); });
-    })();
+    // Mobile nav toggle
+    const hamburger = document.getElementById('nav-hamburger');
+    const navLinks = document.getElementById('nav-links');
+    hamburger.addEventListener('click', () => {
+      const open = navLinks.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', open);
+    });
+    // Close on link click
+    navLinks.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', false);
+      });
+    });
   </script>
 
 </body>

@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<!-- vesica-studio -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Features — Vesica Studio</title>
+  <meta name="description" content="Mandala mode, 17 wallpaper groups, kaleidoscopes, unlimited layers, dotwork tools, post-processing transforms, and PNG export. Every tool a geometric artist needs.">
+  <link rel="icon" type="image/png" href="img/icon.png">
+  <link rel="canonical" href="https://vesica.studio/features.html">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ══ NAV ══ -->
+  <nav class="nav" role="navigation">
+    <div class="container nav-inner">
+      <a href="/" class="nav-logo" aria-label="Vesica Studio home">
+        <img src="img/icon.png" alt="Vesica Studio logo — Seed of Life">
+        <span class="nav-logo-text">VESICA STUDIO</span>
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="features.html" style="color:rgba(255,255,255,0.85);">Features</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="https://app.vesica.studio" class="nav-cta" target="_blank" rel="noopener">Open App →</a></li>
+      </ul>
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ══ PAGE HERO ══ -->
+  <header class="page-hero">
+    <div class="container">
+      <p class="section-label">Features</p>
+      <h1 class="page-hero-headline cinzel">Every tool you need.</h1>
+      <p class="page-hero-sub">A professional symmetry drawing studio, free to start.</p>
+    </div>
+  </header>
+
+  <!-- ══ FEATURE ROWS ══ -->
+  <main class="features-list">
+    <div class="container">
+
+      <!-- 01 Mandala Mode -->
+      <div class="feature-row">
+        <div class="feature-text">
+          <p class="feature-tag">01 — Symmetry</p>
+          <h2 class="feature-title cinzel">Mandala Mode</h2>
+          <p class="feature-desc">
+            Set any number of rotational segments from 2 to 128. Every stroke you make is instantly replicated around the center — in real time, with zero lag. Enable bilateral mirror for reflection symmetry on top of rotation.
+          </p>
+          <ul class="feature-list">
+            <li>2 to 128 rotational segments</li>
+            <li>Bilateral mirror toggle per layer</li>
+            <li>Movable center point — off-center mandalas</li>
+            <li>Real-time replication as you draw</li>
+          </ul>
+        </div>
+        <div class="feature-visual" aria-hidden="true">
+          <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="100" cy="100" r="90" stroke="white" stroke-width="0.5"/>
+            <circle cx="100" cy="100" r="60" stroke="white" stroke-width="0.5"/>
+            <circle cx="100" cy="100" r="30" stroke="white" stroke-width="0.5"/>
+            <line x1="100" y1="10" x2="100" y2="190" stroke="white" stroke-width="0.5"/>
+            <line x1="10" y1="100" x2="190" y2="100" stroke="white" stroke-width="0.5"/>
+            <line x1="27" y1="27" x2="173" y2="173" stroke="white" stroke-width="0.5"/>
+            <line x1="173" y1="27" x2="27" y2="173" stroke="white" stroke-width="0.5"/>
+            <line x1="17" y1="65" x2="183" y2="135" stroke="white" stroke-width="0.3"/>
+            <line x1="17" y1="135" x2="183" y2="65" stroke="white" stroke-width="0.3"/>
+            <line x1="65" y1="17" x2="135" y2="183" stroke="white" stroke-width="0.3"/>
+            <line x1="135" y1="17" x2="65" y2="183" stroke="white" stroke-width="0.3"/>
+            <!-- Seed of Life circles -->
+            <circle cx="100" cy="40" r="30" stroke="#7c3aed" stroke-width="0.7"/>
+            <circle cx="152" cy="70" r="30" stroke="#7c3aed" stroke-width="0.7"/>
+            <circle cx="152" cy="130" r="30" stroke="#7c3aed" stroke-width="0.7"/>
+            <circle cx="100" cy="160" r="30" stroke="#7c3aed" stroke-width="0.7"/>
+            <circle cx="48" cy="130" r="30" stroke="#7c3aed" stroke-width="0.7"/>
+            <circle cx="48" cy="70" r="30" stroke="#7c3aed" stroke-width="0.7"/>
+            <circle cx="100" cy="100" r="30" stroke="#7c3aed" stroke-width="0.7"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- 02 Wallpaper Groups -->
+      <div class="feature-row reverse">
+        <div class="feature-text">
+          <p class="feature-tag">02 — Pattern</p>
+          <h2 class="feature-title cinzel">17 Wallpaper Groups</h2>
+          <p class="feature-desc">
+            Mathematics proved there are exactly 17 ways to tile the plane with repeating symmetry. Vesica Studio implements all of them — the same crystallographic groups found in Islamic geometric art, Escher's tessellations, and ancient mosaic floors.
+          </p>
+          <ul class="feature-list">
+            <li>Complete 2D crystallographic classification</li>
+            <li>p1, p2, pm, pg, cm, pmm, pmg, pgg, cmm</li>
+            <li>p4, p4m, p4g, p3, p3m1, p31m, p6, p6m</li>
+            <li>Live tiling preview as you draw</li>
+          </ul>
+        </div>
+        <div class="feature-visual" aria-hidden="true">
+          <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Grid tiling pattern -->
+            <defs>
+              <pattern id="tile" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+                <rect width="40" height="40" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="0.4"/>
+                <circle cx="20" cy="20" r="12" fill="none" stroke="rgba(124,58,237,0.6)" stroke-width="0.6"/>
+                <line x1="0" y1="20" x2="40" y2="20" stroke="rgba(255,255,255,0.15)" stroke-width="0.3"/>
+                <line x1="20" y1="0" x2="20" y2="40" stroke="rgba(255,255,255,0.15)" stroke-width="0.3"/>
+              </pattern>
+            </defs>
+            <rect width="200" height="200" fill="url(#tile)"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- 03 Kaleidoscope Mode -->
+      <div class="feature-row">
+        <div class="feature-text">
+          <p class="feature-tag">03 — Kaleidoscope</p>
+          <h2 class="feature-title cinzel">Kaleidoscope Mode</h2>
+          <p class="feature-desc">
+            Combine local rosette symmetry with global wallpaper tiling. Draw once — your stroke is reflected and rotated locally, then that entire cell is tiled across the plane. Patterns within patterns, infinitely.
+          </p>
+          <ul class="feature-list">
+            <li>Local rosette symmetry (rotational + mirror)</li>
+            <li>Global wallpaper group tiling</li>
+            <li>Adjustable rosette center per tile</li>
+            <li>Infinite plane preview with zoom</li>
+          </ul>
+        </div>
+        <div class="feature-visual" aria-hidden="true">
+          <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="kaleido" x="0" y="0" width="50" height="50" patternUnits="userSpaceOnUse">
+                <circle cx="25" cy="25" r="18" fill="none" stroke="rgba(124,58,237,0.5)" stroke-width="0.5"/>
+                <circle cx="25" cy="25" r="9" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="0.4"/>
+                <line x1="7" y1="7" x2="43" y2="43" stroke="rgba(255,255,255,0.15)" stroke-width="0.3"/>
+                <line x1="43" y1="7" x2="7" y2="43" stroke="rgba(255,255,255,0.15)" stroke-width="0.3"/>
+                <line x1="25" y1="7" x2="25" y2="43" stroke="rgba(255,255,255,0.15)" stroke-width="0.3"/>
+                <line x1="7" y1="25" x2="43" y2="25" stroke="rgba(255,255,255,0.15)" stroke-width="0.3"/>
+              </pattern>
+            </defs>
+            <rect width="200" height="200" fill="url(#kaleido)"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- 04 Layer System -->
+      <div class="feature-row reverse">
+        <div class="feature-text">
+          <p class="feature-tag">04 — Layers</p>
+          <h2 class="feature-title cinzel">Layer System</h2>
+          <p class="feature-desc">
+            Work the way you think — build complexity gradually, non-destructively. Every layer can carry its own symmetry mode, completely independent of the rest. Blend modes let you mix geometry with photographic precision.
+          </p>
+          <ul class="feature-list">
+            <li>Unlimited layers</li>
+            <li>16 blend modes (Multiply, Screen, Overlay, and more)</li>
+            <li>Per-layer symmetry mode overrides</li>
+            <li>Layer opacity and lock controls</li>
+          </ul>
+        </div>
+        <div class="feature-visual" aria-hidden="true">
+          <svg viewBox="0 0 200 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Layer stack visualization -->
+            <rect x="20" y="100" width="160" height="36" rx="3" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.12)" stroke-width="0.7"/>
+            <rect x="20" y="68" width="160" height="36" rx="3" fill="rgba(255,255,255,0.03)" stroke="rgba(124,58,237,0.3)" stroke-width="0.7"/>
+            <rect x="20" y="36" width="160" height="36" rx="3" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.12)" stroke-width="0.7"/>
+            <rect x="20" y="4" width="160" height="36" rx="3" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.12)" stroke-width="0.7"/>
+            <!-- Layer icons -->
+            <circle cx="40" cy="118" r="8" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="0.7"/>
+            <text x="56" y="123" fill="rgba(255,255,255,0.25)" font-size="9" font-family="DM Sans, sans-serif">Layer 4</text>
+            <circle cx="40" cy="86" r="8" fill="rgba(124,58,237,0.15)" stroke="#7c3aed" stroke-width="0.7"/>
+            <text x="56" y="91" fill="rgba(255,255,255,0.6)" font-size="9" font-family="DM Sans, sans-serif">Layer 3 — active</text>
+            <circle cx="40" cy="54" r="8" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="0.7"/>
+            <text x="56" y="59" fill="rgba(255,255,255,0.25)" font-size="9" font-family="DM Sans, sans-serif">Layer 2</text>
+            <circle cx="40" cy="22" r="8" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="0.7"/>
+            <text x="56" y="27" fill="rgba(255,255,255,0.25)" font-size="9" font-family="DM Sans, sans-serif">Layer 1</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- 05 Drawing Tools -->
+      <div class="feature-row">
+        <div class="feature-text">
+          <p class="feature-tag">05 — Tools</p>
+          <h2 class="feature-title cinzel">Drawing Tools</h2>
+          <p class="feature-desc">
+            Every tool built for the way geometric artists actually work. The Dotwork brush simulates tattoo stippling with pressure-sensitive dot density — draw directly in the medium you'll tattoo in.
+          </p>
+          <ul class="feature-list">
+            <li>Brush — smooth pressure-sensitive strokes</li>
+            <li>Dotwork — stipple density maps to pressure</li>
+            <li>Eraser with symmetry awareness</li>
+            <li>Shapes and geometric primitives</li>
+            <li>Fill and Gradient Thickness</li>
+          </ul>
+        </div>
+        <div class="feature-visual" aria-hidden="true">
+          <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Dotwork simulation -->
+            <circle cx="60" cy="60" r="1.5" fill="rgba(255,255,255,0.6)"/>
+            <circle cx="70" cy="55" r="1" fill="rgba(255,255,255,0.4)"/>
+            <circle cx="80" cy="58" r="2" fill="rgba(255,255,255,0.7)"/>
+            <circle cx="90" cy="52" r="1.2" fill="rgba(255,255,255,0.5)"/>
+            <circle cx="100" cy="60" r="1.8" fill="rgba(255,255,255,0.65)"/>
+            <circle cx="110" cy="55" r="1" fill="rgba(255,255,255,0.4)"/>
+            <circle cx="120" cy="62" r="2.2" fill="rgba(255,255,255,0.7)"/>
+            <circle cx="130" cy="56" r="1.4" fill="rgba(255,255,255,0.5)"/>
+            <circle cx="140" cy="60" r="1.6" fill="rgba(255,255,255,0.6)"/>
+            <!-- Brush stroke -->
+            <path d="M 40 100 Q 100 80 160 100" stroke="rgba(255,255,255,0.35)" stroke-width="3" stroke-linecap="round"/>
+            <path d="M 40 100 Q 100 80 160 100" stroke="rgba(124,58,237,0.5)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="4 6"/>
+            <!-- Shape example -->
+            <polygon points="100,130 120,165 80,165" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="0.8"/>
+            <polygon points="100,130 120,165 80,165" fill="none" stroke="rgba(124,58,237,0.3)" stroke-width="0.4"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- 06 Post-Processing -->
+      <div class="feature-row reverse">
+        <div class="feature-text">
+          <p class="feature-tag">06 — Transforms</p>
+          <h2 class="feature-title cinzel">Post-Processing Transforms</h2>
+          <p class="feature-desc">
+            Apply mathematical transformations to finished geometry. The Hyperbolic transform maps your artwork onto a Poincaré disk — the same non-Euclidean space Escher used for his Circle Limit series.
+          </p>
+          <ul class="feature-list">
+            <li>Hyperbolic (Poincaré disk projection)</li>
+            <li>Kaleidoscope transform</li>
+            <li>Repeat — tile your artwork</li>
+            <li>Polar — wrap flat patterns into circles</li>
+          </ul>
+        </div>
+        <div class="feature-visual" aria-hidden="true">
+          <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Poincare disk -->
+            <circle cx="100" cy="100" r="85" stroke="rgba(255,255,255,0.15)" stroke-width="0.7"/>
+            <circle cx="100" cy="100" r="60" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/>
+            <circle cx="100" cy="100" r="38" stroke="rgba(124,58,237,0.4)" stroke-width="0.6"/>
+            <circle cx="100" cy="100" r="20" stroke="rgba(124,58,237,0.3)" stroke-width="0.5"/>
+            <!-- Hyperbolic lines -->
+            <path d="M 15 100 Q 100 30 185 100" stroke="rgba(255,255,255,0.12)" stroke-width="0.5"/>
+            <path d="M 15 100 Q 100 170 185 100" stroke="rgba(255,255,255,0.12)" stroke-width="0.5"/>
+            <path d="M 100 15 Q 30 100 100 185" stroke="rgba(255,255,255,0.12)" stroke-width="0.5"/>
+            <path d="M 100 15 Q 170 100 100 185" stroke="rgba(255,255,255,0.12)" stroke-width="0.5"/>
+            <path d="M 30 30 Q 100 60 170 30" stroke="rgba(124,58,237,0.2)" stroke-width="0.4"/>
+            <path d="M 30 170 Q 100 140 170 170" stroke="rgba(124,58,237,0.2)" stroke-width="0.4"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- 07 Export -->
+      <div class="feature-row">
+        <div class="feature-text">
+          <p class="feature-tag">07 — Export</p>
+          <h2 class="feature-title cinzel">Export &amp; Gallery</h2>
+          <p class="feature-desc">
+            Export your work as high-resolution PNG — ready to send to clients, print as reference, or use in your portfolio. The favorites gallery keeps everything organized with tagging and full-text search.
+          </p>
+          <ul class="feature-list">
+            <li>PNG export at canvas resolution</li>
+            <li>Favorites gallery — save and revisit work</li>
+            <li>Tagging system for organization</li>
+            <li>Full-text search across your library</li>
+          </ul>
+        </div>
+        <div class="feature-visual" aria-hidden="true">
+          <svg viewBox="0 0 200 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Gallery grid -->
+            <rect x="10" y="10" width="55" height="55" rx="4" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.1)" stroke-width="0.7"/>
+            <rect x="72" y="10" width="55" height="55" rx="4" fill="rgba(124,58,237,0.06)" stroke="rgba(124,58,237,0.3)" stroke-width="0.7"/>
+            <rect x="134" y="10" width="55" height="55" rx="4" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.1)" stroke-width="0.7"/>
+            <rect x="10" y="72" width="55" height="55" rx="4" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.1)" stroke-width="0.7"/>
+            <rect x="72" y="72" width="55" height="55" rx="4" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.1)" stroke-width="0.7"/>
+            <rect x="134" y="72" width="55" height="55" rx="4" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.1)" stroke-width="0.7"/>
+            <!-- Mini geometry in cells -->
+            <circle cx="37" cy="37" r="18" stroke="rgba(255,255,255,0.2)" stroke-width="0.6"/>
+            <circle cx="99" cy="37" r="18" stroke="rgba(124,58,237,0.6)" stroke-width="0.6"/>
+            <circle cx="161" cy="37" r="18" stroke="rgba(255,255,255,0.2)" stroke-width="0.6"/>
+            <circle cx="37" cy="99" r="18" stroke="rgba(255,255,255,0.2)" stroke-width="0.6"/>
+            <circle cx="99" cy="99" r="18" stroke="rgba(255,255,255,0.2)" stroke-width="0.6"/>
+            <circle cx="161" cy="99" r="18" stroke="rgba(255,255,255,0.2)" stroke-width="0.6"/>
+            <!-- PNG export arrow -->
+            <rect x="70" y="132" width="60" height="22" rx="4" fill="rgba(124,58,237,0.15)" stroke="rgba(124,58,237,0.4)" stroke-width="0.7"/>
+            <text x="100" y="148" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="9" font-family="DM Sans, sans-serif">Export PNG</text>
+          </svg>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ══ BOTTOM CTA ══ -->
+  <section class="section-sm" style="border-top:1px solid rgba(255,255,255,0.06);">
+    <div class="container" style="display:flex;flex-direction:column;align-items:center;gap:24px;text-align:center;">
+      <h2 class="section-heading cinzel" style="max-width:500px;">Ready to draw?</h2>
+      <p style="color:rgba(255,255,255,0.4);font-size:16px;font-weight:300;">Free to start. No account required.</p>
+      <a href="https://app.vesica.studio" class="btn-primary" target="_blank" rel="noopener">Open Vesica Studio →</a>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ══ -->
+  <footer class="footer" role="contentinfo">
+    <div class="container footer-inner">
+      <a href="/" class="footer-logo" aria-label="Vesica Studio">
+        <img src="img/icon.png" alt="Vesica Studio — Seed of Life icon">
+        <span class="footer-logo-text">VESICA STUDIO</span>
+      </a>
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="features.html">Features</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="https://app.vesica.studio" target="_blank" rel="noopener">Open App</a>
+        <a href="https://instagram.com/weschetattoo" target="_blank" rel="noopener">@weschetattoo</a>
+      </nav>
+      <p class="footer-copy">© 2026 Vesica Studio by Wesche Tattoo</p>
+    </div>
+  </footer>
+
+  <script>
+    const hamburger = document.getElementById('nav-hamburger');
+    const navLinks = document.getElementById('nav-links');
+    hamburger.addEventListener('click', () => {
+      const open = navLinks.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', open);
+    });
+    navLinks.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', false);
+      });
+    });
+  </script>
+
+</body>
+</html>
