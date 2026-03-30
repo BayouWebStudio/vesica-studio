@@ -149,6 +149,30 @@
     </div>
   </section>
 
+
+  <!-- ══ WAITLIST ══ -->
+  <section class="waitlist-section" aria-labelledby="waitlist-heading">
+    <div class="container">
+      <p class="section-label">Coming to iPad</p>
+      <h2 class="section-heading" id="waitlist-heading">Get notified when we launch on the App Store.</h2>
+      <p class="waitlist-body">Be the first to know — and get early access.</p>
+      <form class="waitlist-form" id="waitlist-form" novalidate>
+        <input
+          type="email"
+          id="waitlist-email"
+          name="email"
+          placeholder="your@email.com"
+          autocomplete="email"
+          required
+          aria-label="Email address"
+          class="waitlist-input"
+        >
+        <button type="submit" class="waitlist-btn">Notify Me</button>
+      </form>
+      <p class="waitlist-status" id="waitlist-status" aria-live="polite"></p>
+    </div>
+  </section>
+
   <!-- ══ FOOTER ══ -->
   <footer class="footer" role="contentinfo">
     <div class="container footer-inner">
@@ -181,6 +205,48 @@
         hamburger.setAttribute('aria-expanded', false);
       });
     });
+  </script>
+
+
+  <script>
+    // Waitlist form
+    const form = document.getElementById('waitlist-form');
+    const status = document.getElementById('waitlist-status');
+    if (form) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = document.getElementById('waitlist-email').value.trim();
+        if (!email) return;
+        const btn = form.querySelector('button');
+        btn.disabled = true;
+        btn.textContent = 'Sending...';
+        try {
+          const res = await fetch('https://vesica-studio-waitlist.bayouwebstudio.workers.dev/subscribe', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email })
+          });
+          const data = await res.json();
+          if (data.success) {
+            form.style.display = 'none';
+            status.textContent = data.message === 'already_subscribed'
+              ? "You're already on the list. We'll see you at launch 🔮"
+              : "You're on the list. We'll reach out when it's ready 🔮";
+            status.style.color = 'rgba(255,255,255,0.9)';
+          } else {
+            status.textContent = 'Something went wrong. Try again.';
+            status.style.color = '#f87171';
+            btn.disabled = false;
+            btn.textContent = 'Notify Me';
+          }
+        } catch {
+          status.textContent = 'Something went wrong. Try again.';
+          status.style.color = '#f87171';
+          btn.disabled = false;
+          btn.textContent = 'Notify Me';
+        }
+      });
+    }
   </script>
 
 </body>
